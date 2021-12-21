@@ -18,7 +18,7 @@ docker run -d --name minio \
   -v /data/minio-data2:/data2 \
   minio/minio server \
   --address 172.27.0.6:9000 \
-  http://minio-{1...3}/data{1...2}
+  http://node{1...3}/data{1...2}
 ```
 
 ### 部署mino2
@@ -31,7 +31,7 @@ docker run -d --name minio \
   -v /data/minio-data2:/data2 \
   minio/minio server \
   --address 172.27.0.7:9000 \
-  http://minio-{1...3}/data{1...2}
+  http://node{1...3}/data{1...2}
 ```
 
 ### 部署mino3
@@ -44,7 +44,7 @@ docker run -d --name minio \
   -v /data/minio-data2:/data2 \
   minio/minio server \
   --address 172.27.0.8:9000 \
-  http://minio-{1...3}/data{1...2}
+  http://node{1...3}/data{1...2}
 ```
 
 ### 部署客户端
