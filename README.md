@@ -49,6 +49,6 @@ docker run -d --name minio \
 
 ### 部署客户端
 ```javascript
-docker run -it --entrypoint=/bin/sh minio/mc
+docker run -it --rm --entrypoint=/bin/sh minio/mc
 mc config host add minio http://172.27.0.6:9000 minio minio123
 ```
