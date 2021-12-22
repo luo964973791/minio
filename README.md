@@ -15,7 +15,8 @@ docker run -d --name minio \
   -e MINIO_ACCESS_KEY=minio \
   -e MINIO_SECRET_KEY=minio123 \
   -v /data/minio-data1:/data1 \
-  -v /data/minio-data2:/data2 \
+  -v /data1/minio-data2:/data2 \
+  -v /etc/localtime:/etc/localtime \
   minio/minio server \
   --address 172.27.0.6:9000 \
   http://node{1...3}/data{1...2}
@@ -28,7 +29,8 @@ docker run -d --name minio \
   -e MINIO_ACCESS_KEY=minio \
   -e MINIO_SECRET_KEY=minio123 \
   -v /data/minio-data1:/data1 \
-  -v /data/minio-data2:/data2 \
+  -v /data1/minio-data2:/data2 \
+  -v /etc/localtime:/etc/localtime \
   minio/minio server \
   --address 172.27.0.7:9000 \
   http://node{1...3}/data{1...2}
@@ -41,7 +43,8 @@ docker run -d --name minio \
   -e MINIO_ACCESS_KEY=minio \
   -e MINIO_SECRET_KEY=minio123 \
   -v /data/minio-data1:/data1 \
-  -v /data/minio-data2:/data2 \
+  -v /data1/minio-data2:/data2 \
+  -v /etc/localtime:/etc/localtime \
   minio/minio server \
   --address 172.27.0.8:9000 \
   http://node{1...3}/data{1...2}
