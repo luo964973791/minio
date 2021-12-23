@@ -50,8 +50,26 @@ docker run -d --name minio \
   http://node{1...3}/data{1...2}
 ```
 
-### 部署客户端
+### 连接
 ```javascript
 docker run -it --rm --entrypoint=/bin/sh minio/mc
 mc config host add minio http://172.27.0.6:9000 minio minio123
+```
+
+
+### 部署客户端
+```javascript
+pip3 install s3cmd
+
+cat /root/.s3cfg 
+host_base = 172.27.0.6:9000
+host_bucket = 172.27.0.6:9000
+use_https = False
+access_key =  minio
+secret_key = minio123
+signature_v2 = False
+
+s3cmd ls   #列出所有对象存储.
+s3cmd get s3://harbor/install.sh .  #下载
+s3cmd put file s3://harbor      #上传
 ```
