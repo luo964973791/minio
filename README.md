@@ -54,6 +54,7 @@ docker run -d --name minio \
 ```javascript
 docker run -it --rm --entrypoint=/bin/sh minio/mc
 mc config host add minio http://172.27.0.6:9000 minio minio123
+mc admin heal -r minio  #删除文件恢复
 ```
 
 
