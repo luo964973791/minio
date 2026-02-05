@@ -78,7 +78,7 @@ s3cmd put file s3://harbor      #上传
 ### 创建docker-registry用户并且授权
 ```javascript
 #新建用户
-./mc admin user add myminio docker-registry Test@123
+./mc admin user add myminio docker-registry 12345
 
 #创建授权docker-registry bucket的json文件
 cat > bucket-policy.json <<EOF
@@ -133,5 +133,5 @@ mc admin policy attach myminio docker-registry-policy --user docker-registry
 
 
 #使用docker-registry用户测试增删改查权限.
-./mc alias set myminio http://localhost:9000 admin Test@123
+./mc alias set myminio http://localhost:9000 docker-registry 12345
 ```
