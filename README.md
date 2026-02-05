@@ -75,7 +75,7 @@ s3cmd get s3://harbor/install.sh .  #下载
 s3cmd put file s3://harbor      #上传
 ```
 
-### 创建用户并且授权
+### 创建docker-registry用户并且授权
 ```javascript
 #新建用户
 ./mc admin user add myminio docker-registry Test@123
