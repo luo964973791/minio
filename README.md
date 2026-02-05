@@ -101,7 +101,7 @@ cat > bucket-policy.json <<EOF
         "s3:GetBucketLocation",
         "s3:ListBucketMultipartUploads"
       ],
-      "Resource": ["arn:aws:s3:::docker-registry"]
+      "Resource": ["arn:aws:s3:::*"]
     },
     {
       "Effect": "Allow",
@@ -112,12 +112,13 @@ cat > bucket-policy.json <<EOF
         "s3:AbortMultipartUpload",
         "s3:ListMultipartUploadParts"
       ],
-      "Resource": ["arn:aws:s3:::docker-registry/*"]
+      "Resource": ["arn:aws:s3:::*/*"]
     }
   ]
 }
 EOF
 #创建叫docker-registry-policy的policy
+mc alias set myminio http://localhost:9000 admin 12345  #先登录管理员账户.
 mc admin policy create myminio docker-registry-policy bucket-policy.json
 绑定授权docker-registry-policy policy 给用户
 mc admin policy attach myminio docker-registry-policy --user docker-registry
