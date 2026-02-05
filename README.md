@@ -88,31 +88,23 @@ cat > bucket-policy.json <<EOF
     {
       "Effect": "Allow",
       "Action": [
-        "s3:ListAllMyBuckets",
-        "s3:CreateBucket",
-        "s3:DeleteBucket"
-      ],
-      "Resource": ["arn:aws:s3:::*"]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
         "s3:ListBucket",
         "s3:GetBucketLocation",
-        "s3:ListBucketMultipartUploads"
-      ],
-      "Resource": ["arn:aws:s3:::*"]
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
+        "s3:ListBucketMultipartUploads",
+        "s3:CreateBucket",
+        "s3:DeleteBucket",
         "s3:GetObject",
         "s3:PutObject",
         "s3:DeleteObject",
         "s3:AbortMultipartUpload",
         "s3:ListMultipartUploadParts"
       ],
-      "Resource": ["arn:aws:s3:::*/*"]
+      "Resource": [
+        "arn:aws:s3:::demo",
+        "arn:aws:s3:::demo/*",
+        "arn:aws:s3:::docker-registry",
+        "arn:aws:s3:::docker-registry/*"
+      ]
     }
   ]
 }
