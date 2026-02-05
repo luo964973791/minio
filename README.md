@@ -89,7 +89,8 @@ cat > bucket-policy.json <<EOF
       "Effect": "Allow",
       "Action": [
         "s3:ListAllMyBuckets",
-        "s3:CreateBucket"
+        "s3:CreateBucket",
+        "s3:DeleteBucket"
       ],
       "Resource": ["arn:aws:s3:::*"]
     },
