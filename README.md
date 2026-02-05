@@ -128,4 +128,5 @@ mc admin policy attach myminio docker-registry-policy --user docker-registry
 
 #使用docker-registry用户测试增删改查权限.
 mc alias set myminio http://localhost:9000 docker-registry 12345
+mc rb myminio/docker-registry   #删除桶
 ```
