@@ -130,4 +130,8 @@ mc admin policy remove myminio docker-registry-policy
 #重新添加权限
 mc admin policy create myminio docker-registry-policy bucket-policy.json
 mc admin policy attach myminio docker-registry-policy --user docker-registry
+
+
+#使用docker-registry用户测试增删改查权限.
+./mc alias set myminio http://localhost:9000 admin Test@123
 ```
