@@ -88,7 +88,8 @@ cat > bucket-policy.json <<EOF
     {
       "Effect": "Allow",
       "Action": [
-        "s3:ListAllMyBuckets"
+        "s3:ListAllMyBuckets",
+        "s3:CreateBucket"
       ],
       "Resource": ["arn:aws:s3:::*"]
     },
@@ -118,5 +119,15 @@ EOF
 #创建叫docker-registry-policy的policy
 mc admin policy create myminio docker-registry-policy bucket-policy.json
 绑定授权docker-registry-policy policy 给用户
-./mc admin policy attach myminio docker-registry-policy --user docker-registry
+mc admin policy attach myminio docker-registry-policy --user docker-registry
+
+
+
+#如果要更新权限，需要解绑再重新添加
+mc admin policy detach myminio docker-registry-policy --user docker-registry
+mc admin policy remove myminio docker-registry-policy
+
+#重新添加权限
+mc admin policy create myminio docker-registry-policy bucket-policy.json
+mc admin policy attach myminio docker-registry-policy --user docker-registry
 ```
