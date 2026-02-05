@@ -74,3 +74,49 @@ s3cmd ls   #列出所有对象存储.
 s3cmd get s3://harbor/install.sh .  #下载
 s3cmd put file s3://harbor      #上传
 ```
+
+### 创建用户并且授权
+```javascript
+#新建用户
+./mc admin user add myminio docker-registry Test@123
+
+#创建授权docker-registry bucket的json文件
+cat > bucket-policy.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Resource": ["arn:aws:s3:::*"]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation",
+        "s3:ListBucketMultipartUploads"
+      ],
+      "Resource": ["arn:aws:s3:::docker-registry"]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:AbortMultipartUpload",
+        "s3:ListMultipartUploadParts"
+      ],
+      "Resource": ["arn:aws:s3:::docker-registry/*"]
+    }
+  ]
+}
+EOF
+#创建叫docker-registry-policy的policy
+mc admin policy create myminio docker-registry-policy bucket-policy.json
+绑定授权docker-registry-policy policy 给用户
+./mc admin policy attach myminio docker-registry-policy --user docker-registry
+```
